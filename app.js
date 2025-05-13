@@ -1,45 +1,35 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
-require ("./database/connection")
+require("./database/connection");
 
+app.get("/books", (req, res) => {
+  //logic to fetch books from database
+  res.json({
+    name: "books fetch successfully",
+  });
+});
 
-app.get("/books",(req,res)=>{
+app.post("/books", (req, res) => {
+  res.json({
+    message: "Book post successfully",
+  });
+});
 
-    //logic to fetch books from database
-    res.json({
-        name:"books fetch successfully",
-    })
-})
+app.delete("/books/:id", (req, res) => {
+  res.json({
+    messege: "delete successfully",
+  });
+});
 
- app.post("/books",(req,res)=>{  
-    res.json({
-        message:"Book post successfully"
-    })
- })
+//postgresql://postgres.lxrszmolqtokgxbmrapw:12345678@aws-0-ap-south-1.pooler.supabase.com:6543/postgres
 
- app.delete("/books/:id",(req,res)=>{
-    res.json({
+app.patch("/books/:id", (req, res) => {
+  res.json({
+    messege: "Update book successfully",
+  });
+});
 
-        messege:"delete successfully",
-
-    })
- })
-
-
-
- //postgresql://postgres.lxrszmolqtokgxbmrapw:12345678@aws-0-ap-south-1.pooler.supabase.com:6543/postgres
-
- app.patch("/books/:id",(req,res)=>{
-res.json({
-    messege:"Update book successfully",
-})
-
- })
-
-
-
-app.listen(5000,function()
-{
-    console.log("Books backend started")
-})
+app.listen(5000, function () {
+  console.log("Books backend started");
+});
