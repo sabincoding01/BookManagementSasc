@@ -3,7 +3,7 @@
 //const { INTEGER, Model } = require("sequelize")
 
 const bookModel = (sequelize, DataTypes) => {
-  sequelize.define("book", {
+  const Book = sequelize.define("book", {
     bookName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,7 +22,7 @@ const bookModel = (sequelize, DataTypes) => {
     },
   });
 
-  return bookModel;
+  return Book;
 };
 
 module.exports = bookModel;
