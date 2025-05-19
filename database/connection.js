@@ -27,5 +27,5 @@ db.products = require("./models/product.model")(sequelize, DataTypes);
 sequelize.sync({ alter: false }).then(() => {
   console.log("migrate vayooo");
 });
-
+ 
 module.exports = db;

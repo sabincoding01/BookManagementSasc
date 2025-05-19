@@ -22,24 +22,46 @@ exports.addBooks = async (req, res) => {
   });
 };
 
-exports.deleteBooks = (req, res) => {
+exports.deleteBooks = async (req, res) => {
+  const id = req.params.id;
+  await books.destroy({
+    where: {
+      id: id,
+    },
+  });
   res.json({
     message: "delete book successfully",
   });
 };
 
 exports.editBooks = (req, res) => {
+  const id = req.params.id;
+  const { bookName, bookPrice, bookAuthor, bookGenre } = req.body;
+
+  books.update(
+    {
+      bookName,
+      bookPrice,
+      bookAuthor,
+      bookGenre,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
   res.json({
     message: "Book edit successfully",
   });
 };
 
-exports.singleFetchBook = async(req, res) => {
+exports.singleFetchBook = async (req, res) => {
   const id = req.params.id;
- const datas = await books.findByPK(id)
- res.json({
-    messege:"Single book fetched",
- })
+  const datas = await books.findByPK(id);
+  res.json({
+    messege: "Single book fetched",
+  });
 };
 
 //aba yo functions haru lai export garnu paryo so dherai tarika xa
